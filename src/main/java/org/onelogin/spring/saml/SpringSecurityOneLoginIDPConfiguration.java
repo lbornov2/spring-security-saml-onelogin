@@ -527,10 +527,8 @@ public class SpringSecurityOneLoginIDPConfiguration extends WebSecurityConfigure
 	
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/static/**", "/test", "/correct-answers", "/yesterdays-correct-answers", "/", "/tomorrow/isScheduled", "/**").permitAll();
 		http.authorizeRequests()
 			.antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage(idpURL).defaultSuccessUrl(successURL);
-		http.csrf().disable();
 		http
         .sessionManagement()
             //.invalidSessionUrl("/login") // session-management@invalid-session-url
